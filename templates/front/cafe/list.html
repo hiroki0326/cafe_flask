@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>予約一覧</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cafe.css') }}">
+  <script src="{{ url_for('static', filename='javascript/form.js') }}"></script>
+</head>
+<body>
+  <h1>予約一覧</h1>>
+  <a href="/cafe/">top</a>
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>名前</th>
+        <th>年齢</th>
+        <th>メールアドレス</th>
+        <th>予約日時</th>
+        <th>予約時間</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <form action="{{ url_for('cafe.edit_user', user_id=user.id) }}" method="POST">
+          <td>{{ user.id }}</td>
+          <td>
+            <span class="name">{{ user.name }}</span>
+            <input type="text" id="name" name="name" class="name edit-input" value="{{ user.name }}" style="display: none;">
+          </td>
+          <td>
+            <span class="age">{{ user.age }}</span>
+            <input type="text" id="age" name="age" class="age edit-input" value="{{ user.age }}" style="display: none;">
+          </td>
+          <td>
+            <span class="email">{{ user.email }}</span>
+            <input type="text" id="email" name="email" class="email edit-input" value="{{ user.email }}" style="display: none;">
+          </td>
+          <td>
+            <span class="reservation_date">{{ user.reservation_date }}</span>
+            <input type="date" id="reservation_date" name="reservation_date" required class="reservation_date edit-input" value="{{ user.reservation_date }}" style="display: none;">
+          </td>
+          <td>
+            <span class="reservation_time">{{ user.reservation_time }}</span>
+            <input type="time" id="reservation_time" name="reservation_time" required class="reservation_time edit-input" value="{{ user.reservation_time }}" style="display: none;">
+          </td>
+          <td>
+            <a href="#" class="edit-button" onclick="enableEdit(this)">編集</a>
+            <input type="submit" class="submit-button" value="保存" style="display: none;">
+            <a class="delete-button" onclick="confirmDelete({{ user.id }}, 'user')">削除</a>
+          </td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

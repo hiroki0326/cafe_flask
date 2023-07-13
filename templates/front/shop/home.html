@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>マーケットプレイス</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/shop.css') }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">ホーム</a></li>
+        <li><a href="#">カテゴリ</a></li>
+        <li><a href="#">出品する</a></li>
+        <li><a href="#">マイページ</a></li>
+        <li><a href="/cafe/">カフェ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>マーケットプレイス</h1>
+    <p>あなたの商品を売りましょう。</p>
+    <a href="#" class="btn">出品する</a>
+  </section>
+
+  <section class="featured-items">
+    <h2>注目の商品</h2>
+    <div class="item">
+      <img src="item1.jpg" alt="商品1">
+      <h3>商品1</h3>
+      <p>商品の説明や詳細情報などを表示します。</p>
+      <a href="#" class="btn">詳細を見る</a>
+    </div>
+    <div class="item">
+      <img src="item2.jpg" alt="商品2">
+      <h3>商品2</h3>
+      <p>商品の説明や詳細情報などを表示します。</p>
+      <a href="#" class="btn">詳細を見る</a>
+    </div>
+    <!-- 追加の商品をここに追記 -->
+  </section>
+
+  <footer>
+    <p>&copy; 2023 マーケットプレイス. All rights reserved.</p>
+  </footer>
+</body>
+</html>

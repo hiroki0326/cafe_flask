@@ -1,0 +1,59 @@
+{% extends 'setting/base.html' %}
+
+{% block head %}
+<title>メニュー一覧</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/form.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/list.css') }}">
+<script src="{{ url_for('static', filename='javascript/setting/form.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/setting/list.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1>メニュー一覧</h1>
+  <a href="#" class="new-button mb-3" id="new-button" onclick="enableNew(this)">新規作成</a>
+  <form action="/setting/cafe/menu/create" id="form" method="POST" style="display: none;" enctype="multipart/form-data">
+    <label for="name">商品名:</label>
+    <input type="text" id="name" name="name">
+  
+    <label for="value">価格:</label>
+    <input type="text" id="value" name="value">
+  
+    <label for="message">メッセージ:</label>
+    <input type="text" id="message" name="message">
+
+    <label for="message">画像:</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
+  
+    <input type="submit" value="予約する">
+  </form>
+  {{ pagination.links }}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/pagenation.css') }}">
+  <div class="card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <div class="card">
+            <th>ID</th>
+            <th>商品名</th>
+            <th>価格</th>
+            <th>メッセージ</th>
+            <th>ファイル</th>
+          </div>
+          <!-- <th class="text-center">操作</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for menu in menus %}
+        <tr class="hoverable-row" onclick="location.href='/setting/cafe/menu/show/{{ menu.id }}';">
+          <td>{{ menu.id }}</td>
+          <td>{{ menu.name }}</td>
+          <td>{{ menu.value }}</td>
+          <td>{{ menu.message }}</td>
+          <td>{{ menu.file_name }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

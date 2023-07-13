@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>オシャレなホームページ</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cafe.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/form.css') }}">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>道の駅カフェ</h1>
+  </header>
+  
+  <nav>
+    <ul>
+      <li><a href="#">ホーム</a></li>
+      <li><a href="#">サービス</a></li>
+      <li><a href="#">ポートフォリオ</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+      <li><a href="/shop/">ショッピング</a></li>
+    </ul>
+  </nav>
+    
+  <section>
+    <h2>カフェの特別な一品</h2>
+    <img src="{{ url_for('static', filename='images/remon.jpeg') }}" alt="特別メニュー" width="400" height="auto">
+    <h2>最新のニュース</h2>
+    <p>ここに最新のニュースやアップデートを表示します。</p>
+    <h2>メニュー</h2>
+    <div class="menu-container">
+      {% for menu in menus %}
+      <div class="menu-item">
+        <img src="{{ url_for('static', filename='images/menus/' + menu.file_name) }}" alt="コーヒー" class="resized-image">
+        <h3>{{ menu.name }}</h3>
+        <p>¥{{ menu.value }}</p>
+        <p>{{ menu.message }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <h2>予約</h2>
+    <form action="/cafe/cafe-post" method="POST">
+      <label for="name">お名前:</label>
+      <input type="text" id="name" name="name">
+    
+      <label for="email">メールアドレス:</label>
+      <input type="email" id="email" name="email">
+    
+      <label for="age">年齢:</label>
+      <input type="age" id="age" name="age">
+    
+      <label for="reservation_date">予約日:</label>
+      <input type="date" id="reservation_date" name="reservation_date" required>
+    
+      <label for="reservation_time">予約時間:</label>
+      <input type="time" id="reservation_time" name="reservation_time" required>
+    
+      <input type="submit" value="予約する">
+    </form>
+    <a href="/cafe/list" class="back-button">予約一覧</a>
+  </section>
+  <footer>
+    <ul class="social-links">
+      <div class="text-white">
+        <li><a href="https://instagram.com/cafe" target="_blank">インスタ</a></li>
+        <li><a href="https://twitter.com/cafe" target="_blank">ツイッター</a></li>
+        <li><a href="https://facebook.com/cafe" target="_blank">フェイスブック</a></li>
+      </div>
+    </ul>
+    <p>© 2023 道の駅カフェ. All rights reserved.</p>
+  </footer>
+</body>
+</html>

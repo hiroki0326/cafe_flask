@@ -1,0 +1,76 @@
+{% extends 'setting/base.html' %}
+
+{% block head %}
+<title>予約一覧</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/form.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/list.css') }}">
+<script src="{{ url_for('static', filename='javascript/setting/form.js') }}"></script>
+<script src="{{ url_for('static', filename='javascript/setting/list.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1>予約一覧</h1>
+  <a href="#" class="new-button mb-3" id="new-button" onclick="enableNew(this)">新規作成</a>
+  <div class="card mb-5" id="form" style="display: none;">
+    <div class="card-header">
+      <h3>新規予約</h3>
+    </div>
+    <div class="card-body">
+      <form action="/setting/cafe/reservation/create" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">名前</label>
+          <input type="text" id="name" name="name" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">メールアドレス</label>
+          <input type="text" id="email" name="email" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="age" class="form-label">年齢</label>
+          <input type="text" id="age" name="age" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="reservation_date" class="form-label">予約日</label>
+          <input type="date" id="reservation_date" name="reservation_date" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label for="reservation_time" class="form-label">予約時間</label>
+          <input type="time" id="reservation_time" name="reservation_time" class="form-control">
+        </div>
+        <div class="text-end mt-3">
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{ pagination.links }}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/setting/pagenation.css') }}">
+  <div class="card">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <div class="card">
+            <th>ID</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>メールアドレス</th>
+            <th>予約日時</th>
+            <th>予約時間</th>
+          </div>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr class="hoverable-row" onclick="location.href='/setting/cafe/reservation/show/{{ user.id }}';">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.reservation_date }}</td>
+          <td>{{ user.reservation_time }}</td>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

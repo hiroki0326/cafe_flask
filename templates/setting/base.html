@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% block head %}{% endblock %}
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+  <script src="{{ url_for('static', filename='javascript/setting.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/setting.css') }}">
+</head>
+<body>
+  <header>
+    <nav class="header-menu">
+      <ul class="header-list">
+        <li class="header-item">
+          <a href="/cafe/" class="header-link">CAFE</a>
+        </li>
+        <li class="header-item">
+          <a href="/shop/" class="header-link">SHOP</a>
+        </li>
+        <li class="header-item">
+          <a href="#" class="header-link">Settings</a>
+        </li>
+        <li class="header-item">
+          <a href="#" class="header-link">Logout</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="side-menu">
+      <button class="hamburger-menu" id="js-hamburger-menu">
+        <span class="hamburger-menu__bar"></span>
+        <span class="hamburger-menu__bar"></span>
+        <span class="hamburger-menu__bar"></span>
+      </button>
+      <nav class="menu">
+        <ul class="menu-list">
+          <a class="text-center text-danger">cafe</a>
+          <li><a href="/setting/cafe/reservation/list" class="menu_link text-center">reservation</a></li>
+          <li><a href="/setting/cafe/menu/list" class="menu_link text-center">menu</a></li>
+          <a class="mt-3 text-center text-danger">shop</a>
+          <li><a href="#" class="menu_link text-center">list</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="content">
+    {% block content %}
+    {% endblock %}
+    </div>
+  </main>
+
+  <footer>
+    <!-- 共通のフッターのコンテンツ -->
+    <p>&copy; 2023 My Company. All rights reserved.</p>
+  </footer>
+</body>
+</html>
