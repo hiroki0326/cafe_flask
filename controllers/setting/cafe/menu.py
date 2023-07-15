@@ -8,7 +8,7 @@ app = Blueprint('menu', __name__)
 
 @app.route('/setting/cafe/menu/list')
 def list():
-  menus = Menu.query.all()
+  menus = Menu.query.order_by(Menu.id.desc()).all()
   # ページネーション
   ## 現在のページ番号を取得
   page = int(request.args.get(get_page_parameter(), 1))

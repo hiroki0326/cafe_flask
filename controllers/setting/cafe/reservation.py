@@ -7,7 +7,7 @@ app = Blueprint('reservation', __name__)
 
 @app.route('/setting/cafe/reservation/list')
 def list():
-  users = User.query.all()
+  users = User.query.order_by(User.id.desc()).all()
   # ページネーション
   ## 現在のページ番号を取得
   page = int(request.args.get(get_page_parameter(), 1))
